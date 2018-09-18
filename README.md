@@ -1,6 +1,6 @@
 # vue-cli-plugin-tailwind
 
-:warning: Purgecss webpack configuration not yet implemented.
+:warning: Postcss order of plugins needs improvement (autoprefixer should run after tailwindcss).
 
 ## Getting started
 
