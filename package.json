@@ -5,8 +5,7 @@
   "author": "Jens Eggerstedt <j.eggerstedt@kaibatech.de>",
   "license": "MIT",
   "dependencies": {
-    "glob-all": "^3.1.0",
-    "purgecss-webpack-plugin": "^1.3.0",
+    "@fullhuman/postcss-purgecss": "^1.0.1",
     "tailwindcss": "^0.6.5"
   },
   "repository": {

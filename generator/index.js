@@ -3,6 +3,7 @@ module.exports = (api, options) => {
     postcss: {
       plugins: {
         tailwindcss: './tailwind.config.js',
+        'vue-cli-plugin-tailwind/purgecss': {},
       },
     },
   };
