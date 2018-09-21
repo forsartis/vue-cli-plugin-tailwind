@@ -1,6 +1,5 @@
 # vue-cli-plugin-tailwind
 
-:warning: Postcss order of plugins needs improvement (autoprefixer should run after tailwindcss).
 
 ## Getting started
 
@@ -8,6 +7,8 @@ Inside your vue-cli project folder add the plugin via:
 ```
 vue add tailwind
 ```
+
+:warning: Check the plugins order in your PostCSS config (autoprefixer should run after tailwindcss).
 
 ## License
 
