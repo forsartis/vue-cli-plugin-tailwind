@@ -8,7 +8,7 @@ class TailwindExtractor {
 }
 
 let config = {
-  content: ['./public/index.html', './src/**/*.vue'],
+  content: ['./public/**/*.html', './src/**/*.vue'],
   extractors: [
     {
       extractor: TailwindExtractor,
