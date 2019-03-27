@@ -13,9 +13,9 @@ module.exports = [
     default: 1,
   },
   {
-    name: 'overwriteConfig',
+    name: 'replaceConfig',
     type: 'confirm',
-    message: 'tailwind.config.js already exists! Do you want to overwrite?',
+    message: 'tailwind.config.js already exists! Do you want to replace it?',
     default: false,
     when: answers => {
       return answers.initConfig && fs.existsSync('./tailwind.config.js');

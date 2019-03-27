@@ -55,7 +55,7 @@ module.exports = (api, options) => {
   api.injectImports(api.entryFile, `import './assets/tailwind.css'`);
   api.render('./template');
 
-  if (options.overwriteConfig) {
+  if (options.replaceConfig) {
     const filename = 'tailwind.config.js';
     delete api.generator.files[filename];
     const configPath = path.join(api.generator.context, filename);
@@ -66,7 +66,7 @@ module.exports = (api, options) => {
     }
   }
 
-  if (options.initConfig && options.overwriteConfig !== false) {
+  if (options.initConfig && options.replaceConfig !== false) {
     api.onCreateComplete(() => {
       generateConfig(options.initConfig);
     });
