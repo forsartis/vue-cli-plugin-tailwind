@@ -1,4 +1,3 @@
-const isHotReloaded = process.argv.includes('serve');
 const postcss = require('postcss');
 
 class TailwindExtractor {
@@ -18,7 +17,7 @@ let config = {
 };
 
 module.exports = postcss.plugin('tailwind-purgecss', function(opts) {
-  if (isHotReloaded) return () => {};
+  if (process.env.NODE_ENV !== 'production') return () => {};
   const purgecss = require('@fullhuman/postcss-purgecss');
   return purgecss(Object.assign(config, opts));
 });
