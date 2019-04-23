@@ -42,20 +42,9 @@ module.exports = {
 ### Configure Purgecss
 By default Purgecss will look for css selectors in your `.html` files inside the `./public` directory and `.vue` files inside the `./src` directory.
 ```javascript
-class TailwindExtractor {
-  static extract(content) {
-    return content.match(/[A-Za-z0-9-_:\/]+/g) || [];
-  }
-}
-
 let config = {
   content: ['./public/**/*.html', './src/**/*.vue'],
-  extractors: [
-    {
-      extractor: TailwindExtractor,
-      extensions: ['html', 'vue'],
-    },
-  ],
+  defaultExtractor: content => content.match(/[A-z0-9-_:/]+/g),
 };
 ```
 You can extend/override the default config in your PostCSS configuration.

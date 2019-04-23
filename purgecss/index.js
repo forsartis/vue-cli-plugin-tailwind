@@ -1,19 +1,8 @@
 const postcss = require('postcss');
 
-class TailwindExtractor {
-  static extract(content) {
-    return content.match(/[A-Za-z0-9-_:\/]+/g) || [];
-  }
-}
-
 let config = {
   content: ['./public/**/*.html', './src/**/*.vue'],
-  extractors: [
-    {
-      extractor: TailwindExtractor,
-      extensions: ['html', 'vue'],
-    },
-  ],
+  defaultExtractor: content => content.match(/[A-z0-9-_:/]+/g),
 };
 
 module.exports = postcss.plugin('tailwind-purgecss', function(opts) {
