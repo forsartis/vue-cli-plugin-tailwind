@@ -44,7 +44,8 @@ By default Purgecss will look for css selectors in your `.html` files inside the
 ```javascript
 let config = {
   content: ['./public/**/*.html', './src/**/*.vue'],
-  defaultExtractor: content => content.match(/[A-z0-9-_:/]+/g),
+  defaultExtractor: content =>
+    content.match(/[A-Za-z0-9-_/:]*[A-Za-z0-9-_/]+/g) || [],
 };
 ```
 You can extend/override the default config in your PostCSS configuration.
