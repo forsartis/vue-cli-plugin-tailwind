@@ -14,7 +14,7 @@ Choose what Tailwind config you want to generate:
 * **minimal** *(default)* - Will create a minimal `tailwind.config.js` file where you can define your customizations.
 * **full** - Will generate a `tailwind.config.js` file containing the entire default configuration.
 
-See [Tailwinds configuration guide](https://next.tailwindcss.com/docs/configuration) for more info.
+See [Tailwinds configuration guide](https://tailwindcss.com/docs/configuration) for more info.
 
 ## PostCSS Configuration
 Tailwind CSS and Purgecss will be added as plugins in your PostCSS config.
