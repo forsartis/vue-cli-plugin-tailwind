@@ -34,7 +34,8 @@ function generateConfig(option) {
     args.push('--full');
   }
   const { spawnSync } = require('child_process');
-  spawnSync('./node_modules/.bin/tailwind', args);
+  const tailwind = path.resolve('./node_modules/.bin/tailwind');
+  spawnSync(tailwind, args, { shell: process.platform === 'win32'});
 }
 
 module.exports = (api, options) => {
