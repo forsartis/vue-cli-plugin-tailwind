@@ -24,7 +24,6 @@ module.exports = {
   plugins: {
     tailwindcss: {},
     'vue-cli-plugin-tailwind/purgecss': {},
-    autoprefixer: {},
   },
 };
 ```
@@ -57,7 +56,6 @@ module.exports = {
     'vue-cli-plugin-tailwind/purgecss': {
       whitelist: ['foo', 'bar'],
     },
-    autoprefixer: {},
   },
 };
 ```
