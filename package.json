@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-plugin-tailwind",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "description": "vue-cli plugin for Tailwind CSS",
   "author": "Jens Eggerstedt <j.eggerstedt@kaibatech.de>",
   "license": "MIT",
