@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const filenameTailwind = 'tailwind.config.js';
+
 function loadModule(src, filename) {
   var Module = module.constructor;
   var m = new Module();
@@ -35,7 +37,19 @@ function generateConfig(option) {
   }
   const { spawnSync } = require('child_process');
   const tailwind = path.resolve('./node_modules/.bin/tailwind');
-  spawnSync(tailwind, args, { shell: process.platform === 'win32'});
+  spawnSync(tailwind, args, { shell: process.platform === 'win32' });
+}
+
+function injectPurgeConfig(ctx) {
+  const configPath = path.join(ctx, filenameTailwind);
+  const tailwindConfig = fs.readFileSync(configPath, 'utf-8');
+  fs.writeFileSync(
+    configPath,
+    tailwindConfig.replace(
+      'purge: []',
+      "purge: { content: ['./public/**/*.html', './src/**/*.vue'] }",
+    ),
+  );
 }
 
 module.exports = (api, options) => {
@@ -44,7 +58,6 @@ module.exports = (api, options) => {
     postcss: {
       plugins: {
         tailwindcss: {},
-        'vue-cli-plugin-tailwind/purgecss': {},
         autoprefixer: {},
       },
     },
@@ -58,9 +71,8 @@ module.exports = (api, options) => {
   api.render('./template');
 
   if (options.replaceConfig) {
-    const filename = 'tailwind.config.js';
-    delete api.generator.files[filename];
-    const configPath = path.join(api.generator.context, filename);
+    delete api.generator.files[filenameTailwind];
+    const configPath = path.join(api.generator.context, filenameTailwind);
     try {
       fs.unlinkSync(configPath);
     } catch (error) {
@@ -71,6 +83,7 @@ module.exports = (api, options) => {
   if (options.initConfig && options.replaceConfig !== false) {
     api.onCreateComplete(() => {
       generateConfig(options.initConfig);
+      injectPurgeConfig(api.generator.context);
     });
   }
 };
