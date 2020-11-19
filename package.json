@@ -18,7 +18,8 @@
     "purgecss"
   ],
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^2.3.0",
-    "tailwindcss": "^1.8.9"
+    "autoprefixer": "^9",
+    "postcss": "^7",
+    "tailwindcss": "2.0.1-compat"
   }
 }
