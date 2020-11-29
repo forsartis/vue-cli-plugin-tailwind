@@ -53,6 +53,14 @@ function injectPurgeConfig(ctx) {
 }
 
 module.exports = (api, options) => {
+  api.extendPackage({
+    dependencies: {
+      "autoprefixer": "^9",
+      "postcss": "^7",
+      "tailwindcss": "2.0.1-compat"
+    }
+  })
+
   const postcss = readPostcssConfig(api.generator);
   const configs = {
     postcss: {
