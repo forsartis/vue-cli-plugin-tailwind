@@ -1,5 +1,5 @@
 # vue-cli-plugin-tailwind
-[![Tailwind CSS](https://img.shields.io/npm/dependency-version/vue-cli-plugin-tailwind/tailwindcss.svg)](https://tailwindcss.com/)
+[![Tailwind CSS](https://img.shields.io/badge/tailwindcss-^2.0.2-blue)](https://tailwindcss.com/)
 [![License](https://img.shields.io/npm/l/vue-cli-plugin-tailwind.svg)](https://github.com/forsartis/vue-cli-plugin-tailwind/blob/master/LICENSE)
 
 A plugin that adds Tailwind CSS to your vue-cli project.
@@ -41,8 +41,8 @@ module.exports = {
 ### Configure PurgeCSS
 By default PurgeCSS will look for css selectors in your `.html` files inside the `./public` directory and `.vue` files inside the `./src` directory.
 ```javascript
-purge: { 
-  content: ['./public/**/*.html', './src/**/*.vue'] 
+purge: {
+  content: ['./public/**/*.html', './src/**/*.vue']
 },
 ```
 Check [https://tailwindcss.com/docs/optimizing-for-production](https://tailwindcss.com/docs/optimizing-for-production) for more info.
