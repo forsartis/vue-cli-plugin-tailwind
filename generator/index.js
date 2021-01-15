@@ -58,7 +58,7 @@ module.exports = (api, options) => {
   const configs = {
     postcss: {
       plugins: {
-        tailwindcss: {},
+        '@tailwindcss/postcss7-compat': {},
         autoprefixer: {},
       },
     },
