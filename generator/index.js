@@ -37,6 +37,7 @@ function generateConfig(option) {
   }
   const { spawnSync } = require('child_process');
   const tailwind = path.resolve('./node_modules/.bin/tailwind');
+  if (!fs.existsSync(tailwind)) throw new Error(`${tailwind} not found`);
   spawnSync(tailwind, args, { shell: process.platform === 'win32' });
 }
 
