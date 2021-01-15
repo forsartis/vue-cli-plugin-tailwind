@@ -56,6 +56,12 @@ function injectPurgeConfig(ctx) {
 module.exports = (api, options) => {
   const postcss = readPostcssConfig(api.generator);
   const configs = {
+    dependencies: {
+      '@tailwindcss/postcss7-compat': '^2.0.2',
+      autoprefixer: '^9',
+      postcss: '^7',
+      tailwindcss: 'npm:@tailwindcss/postcss7-compat@^2.0.2',
+    },
     postcss: {
       plugins: {
         '@tailwindcss/postcss7-compat': {},
