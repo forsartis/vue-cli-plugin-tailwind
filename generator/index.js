@@ -1,5 +1,4 @@
 const fs = require('fs');
-const path = require('path');
 
 const filenameTailwind = 'tailwind.config.js';
 
@@ -10,17 +9,17 @@ function loadModule(src, filename) {
   return m.exports;
 }
 
-function readPostcssConfig(generator) {
+function readPostcssConfig(api) {
   const filename = 'postcss.config.js';
-  const file = generator.files[filename];
+  const file = api.generator.files[filename];
 
   if (file) {
-    const filePath = path.join(generator.context, filename);
+    const filePath = api.resolve(filename);
     fs.writeFileSync(filePath, '');
     return loadModule(file, filename);
   }
 
-  const config = generator.originalPkg.postcss;
+  const config = api.generator.originalPkg.postcss;
   if (config) {
     const copy = { ...config };
     delete config.plugins;
@@ -30,19 +29,22 @@ function readPostcssConfig(generator) {
   return {};
 }
 
-function generateConfig(option) {
+function generateConfig(api, option) {
   const args = ['init'];
   if (option === 'full') {
     args.push('--full');
   }
   const { spawnSync } = require('child_process');
-  const tailwind = path.resolve('./node_modules/.bin/tailwind');
+  const tailwind = api.resolve('./node_modules/.bin/tailwind');
   if (!fs.existsSync(tailwind)) throw new Error(`${tailwind} not found`);
-  spawnSync(tailwind, args, { shell: process.platform === 'win32' });
+  spawnSync(tailwind, args, {
+    cwd: api.generator.context,
+    shell: process.platform === 'win32',
+  });
 }
 
-function injectPurgeConfig(ctx) {
-  const configPath = path.join(ctx, filenameTailwind);
+function injectPurgeConfig(api) {
+  const configPath = api.resolve(filenameTailwind);
   const tailwindConfig = fs.readFileSync(configPath, 'utf-8');
   fs.writeFileSync(
     configPath,
@@ -54,7 +56,7 @@ function injectPurgeConfig(ctx) {
 }
 
 module.exports = (api, options) => {
-  const postcss = readPostcssConfig(api.generator);
+  const postcss = readPostcssConfig(api);
   const configs = {
     dependencies: {
       '@tailwindcss/postcss7-compat': '^2.0.2',
@@ -79,7 +81,7 @@ module.exports = (api, options) => {
 
   if (options.replaceConfig) {
     delete api.generator.files[filenameTailwind];
-    const configPath = path.join(api.generator.context, filenameTailwind);
+    const configPath = api.resolve(filenameTailwind);
     try {
       fs.unlinkSync(configPath);
     } catch (error) {
@@ -89,8 +91,8 @@ module.exports = (api, options) => {
 
   if (options.initConfig && options.replaceConfig !== false) {
     api.onCreateComplete(() => {
-      generateConfig(options.initConfig);
-      injectPurgeConfig(api.generator.context);
+      generateConfig(api, options.initConfig);
+      injectPurgeConfig(api);
     });
   }
 };
