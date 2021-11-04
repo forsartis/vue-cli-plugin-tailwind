@@ -50,7 +50,7 @@ function injectPurgeConfig(api) {
     configPath,
     tailwindConfig.replace(
       'purge: []',
-      "purge: { content: ['./public/**/*.html', './src/**/*.vue'] }",
+      "purge: ['./public/**/*.html', './src/**/*.vue']",
     ),
   );
 }
@@ -59,10 +59,10 @@ module.exports = (api, options) => {
   const postcss = readPostcssConfig(api);
   const configs = {
     dependencies: {
-      '@tailwindcss/postcss7-compat': '^2.0.2',
+      '@tailwindcss/postcss7-compat': '^2.2.17',
       autoprefixer: '^9',
       postcss: '^7',
-      tailwindcss: 'npm:@tailwindcss/postcss7-compat@^2.0.2',
+      tailwindcss: 'npm:@tailwindcss/postcss7-compat@^2.2.17',
     },
     postcss: {
       plugins: {
