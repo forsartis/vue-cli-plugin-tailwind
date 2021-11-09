@@ -41,9 +41,7 @@ module.exports = {
 ### Configure PurgeCSS
 By default PurgeCSS will look for css selectors in your `.html` files inside the `./public` directory and `.vue` files inside the `./src` directory.
 ```javascript
-purge: {
-  content: ['./public/**/*.html', './src/**/*.vue']
-},
+purge: ['./public/**/*.html', './src/**/*.vue'],
 ```
 Check [https://tailwindcss.com/docs/optimizing-for-production](https://tailwindcss.com/docs/optimizing-for-production) for more info.
 
