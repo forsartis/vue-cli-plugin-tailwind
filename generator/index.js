@@ -50,7 +50,7 @@ function injectPurgeConfig(api) {
     configPath,
     tailwindConfig.replace(
       'purge: []',
-      "purge: ['./public/**/*.html', './src/**/*.vue']",
+      "purge: ['./public/**/*.html', './src/**/*.{vue,js,ts,jsx,tsx}']",
     ),
   );
 }
