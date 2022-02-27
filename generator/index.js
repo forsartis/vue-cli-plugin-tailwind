@@ -43,14 +43,14 @@ function generateConfig(api, option) {
   });
 }
 
-function injectPurgeConfig(api) {
+function injectContentConfig(api) {
   const configPath = api.resolve(filenameTailwind);
   const tailwindConfig = fs.readFileSync(configPath, 'utf-8');
   fs.writeFileSync(
     configPath,
     tailwindConfig.replace(
-      'purge: []',
-      "purge: ['./public/**/*.html', './src/**/*.{vue,js,ts,jsx,tsx}']",
+      'content: []',
+      "content: ['./public/**/*.html', './src/**/*.{vue,js,ts,jsx,tsx}']",
     ),
   );
 }
@@ -59,10 +59,9 @@ module.exports = (api, options) => {
   const postcss = readPostcssConfig(api);
   const configs = {
     dependencies: {
-      '@tailwindcss/postcss7-compat': '^2.2.17',
-      autoprefixer: '^9',
-      postcss: '^7',
-      tailwindcss: 'npm:@tailwindcss/postcss7-compat@^2.2.17',
+      autoprefixer: '^10',
+      postcss: '^8',
+      tailwindcss: '^3',
     },
     postcss: {
       plugins: {
@@ -92,7 +91,7 @@ module.exports = (api, options) => {
   if (options.initConfig && options.replaceConfig !== false) {
     api.onCreateComplete(() => {
       generateConfig(api, options.initConfig);
-      injectPurgeConfig(api);
+      injectContentConfig(api);
     });
   }
 };

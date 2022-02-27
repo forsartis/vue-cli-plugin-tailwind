@@ -27,23 +27,5 @@ module.exports = {
   },
 };
 ```
-### Custom Tailwind config file name
-If you use a name other than `tailwind.config.js` for the Tailwind config file, you will need to specify it in your PostCSS configuration.
-```javascript
-// postcss.config.js
-module.exports = {
-  plugins: {
-    tailwindcss: 'custom-name.js',
-    //...
-  },
-};
-```
-### Configure PurgeCSS
-By default PurgeCSS will look for css selectors in your `.html` files inside the `./public` directory and `.vue, .js, .ts, .jsx, .tsx` files inside the `./src` directory.
-```javascript
-purge: ['./public/**/*.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-```
-Check [https://tailwindcss.com/docs/optimizing-for-production](https://tailwindcss.com/docs/optimizing-for-production) for more info.
-
 ## License
 [MIT](https://github.com/forsartis/vue-cli-plugin-tailwind/blob/master/LICENSE)
