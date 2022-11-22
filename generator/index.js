@@ -58,7 +58,7 @@ function injectContentConfig(api) {
 module.exports = (api, options) => {
   const postcss = readPostcssConfig(api);
   const configs = {
-    dependencies: {
+    devDependencies: {
       autoprefixer: '^10',
       postcss: '^8',
       tailwindcss: '^3',
