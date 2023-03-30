@@ -62,6 +62,7 @@ module.exports = (api, options) => {
       autoprefixer: '^10',
       postcss: '^8',
       tailwindcss: '^3',
+      'postcss-loader': '^4.1.0',
     },
     postcss: {
       plugins: {
